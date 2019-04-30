@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/../BookMyTable.iml" filepath="$PROJECT_DIR$/../BookMyTable.iml" />
+=======
+>>>>>>> f615ec8e1bbb74f5067d712ba1cba5ec35acee01
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
     </modules>
   </component>
