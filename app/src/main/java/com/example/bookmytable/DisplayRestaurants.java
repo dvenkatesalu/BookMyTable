@@ -1,9 +1,12 @@
 package com.example.bookmytable;
+import android.content.Context;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class DisplayRestaurants extends AppCompatActivity {
+public class DisplayRestaurants extends MainActivity {
 
     private ListView mListView;
     private static final String API_KEY = "AIzaSyDFToH1EV31jWXGQGlJIfJgUTnfjFspYas";
@@ -34,7 +37,12 @@ public class DisplayRestaurants extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_restaurant);
+
+        //Keep the Nav Drawer, inflate a view as part of the nav link
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.search_restaurant, null, false);
+        mDrawer.addView(contentView,0);
+
         Intent intent = getIntent();
         String longitude = intent.getStringExtra("long");
         String latitude = intent.getStringExtra("lat");
