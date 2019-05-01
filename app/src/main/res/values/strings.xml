@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">BookMyTable</string>
-    <string name="restaurants">Restaurants</string>
-    <string name="restaurant_locator">Restaurant Search</string>
+    <string name="restaurants">Log in</string>
+    <string name="restaurant_locator">BookMyTable</string>
 </resources>

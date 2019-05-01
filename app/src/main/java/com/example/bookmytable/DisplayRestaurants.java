@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class DisplayRestaurants extends AppCompatActivity {
 
     private ListView mListView;
-    private static final String API_KEY = "AIzaSyDFToH1EV31jWXGQGlJIfJgUTnfjFspYas";
+    private static final String API_KEY = "AIzaSyDi1OagTMGaVbLZb5UW8rHpKTWkmgaMZK4";
 
     private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
 
@@ -51,7 +51,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         if (list != null)
         {
             mListView = (ListView) findViewById(R.id.listView);
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, list);
+            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view, list);
             mListView.setAdapter(adapter);
         }
     }
@@ -102,6 +102,8 @@ public class DisplayRestaurants extends AppCompatActivity {
                 Place place = new Place();
                 place.reference = predsJsonArray.getJSONObject(i).getString("reference");
                 place.name = predsJsonArray.getJSONObject(i).getString("name");
+
+
                 resultList.add(place);
             }
         } catch (JSONException e) {
@@ -116,6 +118,7 @@ public class DisplayRestaurants extends AppCompatActivity {
     public static class Place {
         private String reference;
         private String name;
+        private String image;
 
         public Place(){
             super();
