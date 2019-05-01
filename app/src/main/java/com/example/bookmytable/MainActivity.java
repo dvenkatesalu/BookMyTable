@@ -89,9 +89,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Intent intent = new Intent(this,DisplayRestaurants.class);
             LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Double longitude = -87.61612112;
+           Double longitude = location.getLongitude();
+            // Double longitude = 151.1957362;
             System.out.println("I am longitude"+longitude);
-            Double latitude = 41.84158174;
+            Double latitude = location.getLatitude();
+          //  Double latitude = -33.8670522;
             System.out.println("I am latitude"+latitude);
             String longit = Double.toString(longitude);
             String lat = Double.toString(latitude);
