@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterRestaurantActivity"></activity>
+        <activity android:name=".CommonRegisterActivity"></activity>
+        <activity android:name=".RegisterRestaurantActivity" />
         <activity android:name=".RegisterCustomerActivity" />
         <activity android:name=".LoginActivity" >
             <intent-filter>
