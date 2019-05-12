@@ -27,7 +27,7 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         mobilenum = findViewById(R.id.editText_phonenum_register_customer);
         dob = findViewById(R.id.editText_dob_register_customer);
         forRestaurant = findViewById(R.id.textView_register_restaurant);
-        next = findViewById(R.id.button_next);
+        next = findViewById(R.id.button_next_customer);
 
 
         forRestaurant.setTextColor(Color.BLUE);
@@ -45,10 +45,10 @@ public class RegisterCustomerActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO get name, address,mobilenum,dob and pass it to next activity using intent.putExtra()
+                //TODO get name, address,mobilenum,dob and pass it to next activity using intent.putExtra(key,value)
 
                 if (checkFields()) {
-//                    startActivity();
+                    startActivity(new Intent(RegisterCustomerActivity.this,CommonRegisterActivity.class));
                 }
             }
         });
