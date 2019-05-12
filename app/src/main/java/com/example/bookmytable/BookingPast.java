@@ -8,20 +8,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookingPast extends Fragment {
-
-    public TextView restaurantName, bookingTime;
-    public Button giveReview;
-
+    ListView listView;
+    BookingPastAdapter adapter;
+    List<RestaurantBO> restaurantBOList = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_booking_past, container, false);
-        restaurantName = v.findViewById(R.id.textView_restaurant_name_booking_past);
-        bookingTime = v.findViewById(R.id.textView_time_booking_past);
-        giveReview = v.findViewById(R.id.button_booking_past_review);
+        listView = v.findViewById(R.id.listView_booking_past);
+        adapter = new BookingPastAdapter(getActivity(),R.layout.fragment_booking_past,restaurantBOList);
+        listView.setAdapter(adapter);
         return v;
     }
 }

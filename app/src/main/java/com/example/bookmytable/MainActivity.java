@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     case R.id.settings:
                         Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();break;
                     case R.id.bookings:
+                        startActivity(new Intent(MainActivity.this,BookingActivity.class));
                         Toast.makeText(MainActivity.this, "My Bookings",Toast.LENGTH_SHORT).show();break;
                     case R.id.book:
                         showRestaurants();
