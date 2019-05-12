@@ -14,10 +14,11 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CommonRegisterActivity"></activity>
+        <activity android:name=".NewLoginActivity"></activity>
+        <activity android:name=".CommonRegisterActivity" />
         <activity android:name=".RegisterRestaurantActivity" />
         <activity android:name=".RegisterCustomerActivity" />
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,9 +30,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDi1OagTMGaVbLZb5UW8rHpKTWkmgaMZK4" />
 
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".DisplayRestaurants" />
     </application>
 

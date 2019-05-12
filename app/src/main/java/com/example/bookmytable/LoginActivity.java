@@ -25,6 +25,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                     if(firebaseAuth.getCurrentUser() != null){
                         Snackbar.make(findViewById(R.id.login_layout), "User already LoggedIn.", Snackbar.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                        checkIfUserExists();
                     }
             }
         };
@@ -129,7 +134,12 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            if( user != null ) {
+                                checkIfUserExists();
+                            }
+                            else{
+                                Snackbar.make(findViewById(R.id.login_layout), "Failed to fetch user details.", Snackbar.LENGTH_SHORT).show();
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -139,5 +149,41 @@ public class LoginActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+    }
+
+    private void checkIfUserExists(){
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        final String key = user.getDisplayName() + "_" + user.getUid();
+
+        UserInfoBO userInfo = new UserInfoBO();
+
+
+        // Get firebase DB instance
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference fbRef =
+                database.getReference("users").child("customer").child(key);
+
+        fbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists()) {
+                    UserInfoBO userInfo = dataSnapshot.getValue(UserInfoBO.class);
+                    Log.d("Retrieving user :", userInfo.toString());
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    //TODO:CHECK WHERE TO REDIRECT FOR RESTAURANT USER
+                } else {
+                    startActivity(new Intent(LoginActivity.this,NewLoginActivity.class));
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+                Log.d("Error", "Error" + firebaseError.getMessage());
+            }
+        });
     }
 }

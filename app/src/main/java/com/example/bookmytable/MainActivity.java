@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private static final int PERMISSION_REQUEST_LOCATION = 0;
     private View mLayout;
 
-    protected DrawerLayout mDrawer;
+    public static DrawerLayout mDrawer;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
 
