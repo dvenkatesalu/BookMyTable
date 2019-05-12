@@ -16,18 +16,20 @@
         android:theme="@style/AppTheme">
         <activity android:name=".RegisterRestaurantActivity"></activity>
         <activity android:name=".RegisterCustomerActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDi1OagTMGaVbLZb5UW8rHpKTWkmgaMZK4" />
 
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".DisplayRestaurants" />
     </application>
