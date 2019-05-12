@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.bookmytable.BookingPast;
+import com.example.bookmytable.BookingUpcoming;
 import com.example.bookmytable.R;
 
 /**
@@ -28,7 +30,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        switch (position){
+            case 0 : return new BookingUpcoming();
+            case 1: return new BookingPast();
+        }
+        return null;
     }
 
     @Nullable
