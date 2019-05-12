@@ -1,5 +1,6 @@
 package com.example.bookmytable;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,7 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     public void register(View view) {
         // if "New User? Click Here to Register" or Register Button Clicked
         // GO TO register activity
-
+        startActivity(new Intent(LoginActivity.this,RegisterCustomerActivity.class));
+        //add finish() if you want this screen and move to next, if you press back in the next screen the app will close
 
     }
 }
