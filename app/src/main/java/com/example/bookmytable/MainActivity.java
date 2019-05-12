@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         setContentView(R.layout.activity_main);
         mLayout = findViewById(R.id.activity_main);
 
-        mDrawer = (DrawerLayout)findViewById(R.id.activity_main);
+        mDrawer = findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, mDrawer,R.string.Open, R.string.Close);
 
         mDrawer.addDrawerListener(t);
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nv = (NavigationView)findViewById(R.id.nv);
+        nv = findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -60,7 +62,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         showRestaurants();
                         break;
                     case R.id.signout:
-                        Toast.makeText(MainActivity.this, "Sign Out",Toast.LENGTH_SHORT).show();break;
+                        signOut();
+                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        break;
                     default:
                         return true;
                 }
@@ -172,5 +176,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void signOut(){
+        FirebaseAuth.getInstance().signOut();
     }
 }
