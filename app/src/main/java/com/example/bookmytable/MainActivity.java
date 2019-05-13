@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         startActivity(new Intent(MainActivity.this,BookingActivity.class));
 
                     case R.id.book:
-                        showRestaurants();
+                        startActivity(new Intent(MainActivity.this,DisplayRestaurantsForCustomers.class));
                         break;
                     case R.id.signout:
                         signOut();

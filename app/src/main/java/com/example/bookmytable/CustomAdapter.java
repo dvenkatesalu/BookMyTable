@@ -1,18 +1,12 @@
 package com.example.bookmytable;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.bookmytable.R;
-import com.example.bookmytable.RestaurantBO;
 
 import java.util.ArrayList;
 
@@ -85,8 +79,8 @@ public class CustomAdapter extends ArrayAdapter<RestaurantBO> implements View.On
         //result.startAnimation(animation);
         lastPosition = position;
 
-        viewHolder.txtName.setText(restaurantBO.getRestaurantName());
-        viewHolder.txtType.setText(restaurantBO.getRestaurantAddress());
+        viewHolder.txtName.setText(restaurantBO.getName());
+        viewHolder.txtType.setText(restaurantBO.getAddress());
 
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
