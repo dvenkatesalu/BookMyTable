@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private final static Integer RC_SIGN_IN = 2;
     private static final String TAG = "LoginActivity";
 
+
     FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
@@ -163,19 +164,36 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference fbRef =
-                database.getReference("users").child("customer").child(key);
+                database.getReference("userKeys").child(key);
 
         fbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if(dataSnapshot.exists()) {
-                    UserInfoBO userInfo = dataSnapshot.getValue(UserInfoBO.class);
-                    Log.d("Retrieving user :", userInfo.toString());
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    //TODO:CHECK WHERE TO REDIRECT FOR RESTAURANT USER
-                } else {
-                    startActivity(new Intent(LoginActivity.this,NewLoginActivity.class));
+                    Boolean isCustomer = (Boolean)dataSnapshot.child("isCustomer").getValue();
+                    if ( isCustomer ) {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    }
+
+                    else {
+                        Intent intent = new Intent(LoginActivity.this,DisplayRestaurants.class);
+                        // Double longitude = location.getLongitude();
+                        Double longitude = 151.1957362;
+                        System.out.println("I am longitude"+longitude);
+                        //  Double latitude = location.getLatitude();
+                        Double latitude = -33.8670522;
+                        String longit = Double.toString(longitude);
+                        String lat = Double.toString(latitude);
+                        intent.putExtra("long", longit);
+                        intent.putExtra("lat", lat);
+                        startActivity(intent);
+                    }
+
+                }
+
+                else{
+                    startActivity(new Intent(LoginActivity.this, NewLoginActivity.class));
                 }
 
             }
