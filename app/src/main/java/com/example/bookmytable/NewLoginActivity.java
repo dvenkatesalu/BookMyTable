@@ -97,7 +97,7 @@ public class NewLoginActivity extends AppCompatActivity {
                 Log.d("Error", "Error" + firebaseError.getMessage());
             }
         });
-        startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
+        startActivity(new Intent(NewLoginActivity.this,DisplayRestaurantsForCustomers.class));
     }
 
     private void adduserDataToFB( UserInfoBO user, DatabaseReference fbRef, String key, Boolean isCustomer){

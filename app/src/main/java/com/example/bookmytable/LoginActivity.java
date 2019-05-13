@@ -173,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()) {
                     Boolean isCustomer = (Boolean)dataSnapshot.child("isCustomer").getValue();
                     if ( isCustomer ) {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        startActivity(new Intent(LoginActivity.this, DisplayRestaurantsForCustomers.class));
                     }
 
                     else {
