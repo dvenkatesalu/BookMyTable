@@ -1,12 +1,23 @@
 package com.example.bookmytable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class RestaurantBO implements Serializable {
     String restaurantName;
     String restaurantImage;
     String restaurantAddress;
     float restaurantRating;
+    public String reference;
+    ArrayList<RestaurantBO> list1;
+
+    public RestaurantBO() {
+
+    }
+
+    public RestaurantBO(ArrayList<RestaurantBO> list1) {
+        this.list1 = list1;
+    }
 
     public String getRestaurantName() {
         return restaurantName;

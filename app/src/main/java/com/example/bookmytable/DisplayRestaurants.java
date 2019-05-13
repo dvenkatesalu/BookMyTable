@@ -39,7 +39,6 @@ public class DisplayRestaurants extends AppCompatActivity {
     private static final String LOG_TAG = "ListRest";
     private static String[] restname = new String[]{};
     private static String[] restLocation = new String[]{};
-    //private static String[] readauthor = new String[]{};
     private static Integer[] restRating = new Integer[]{};
     private static RestaurantsAdapter restAdapter;
     ArrayList<RestaurantBO> restaurantBO;
@@ -62,18 +61,13 @@ public class DisplayRestaurants extends AppCompatActivity {
         Double lat = Double.parseDouble(latitude);
         int radius = 1000;
 
-        ArrayList<Place> list = search(lat, lng, radius);
+        ArrayList<RestaurantBO> list = search(lat, lng, radius);
+
 
         if (list != null)
         {
             mListView = (ListView) findViewById(R.id.listView);
-
-//            restAdapter = new RestaurantsAdapter(this, restname, restLocation, restRating);
-//            mListView.setAdapter(restAdapter);
-            //restAdapter= new RestaurantsAdapter(restaurantBO,getApplicationContext());
-             // CustomAdapter adapter = new CustomAdapter(this, R.layout.text_view, list);
-//            mListView.setAdapter(adapter);
-            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view,R.id.tv, list);
+            CustomAdapter adapter = new CustomAdapter(this,list);
             mListView.setAdapter(adapter);
 
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -84,19 +78,15 @@ public class DisplayRestaurants extends AppCompatActivity {
                     final String text = tv.getText().toString();
 
                     // selected item
-
-
                     Toast.makeText(getApplicationContext(), "Selected Item :" +text, Toast.LENGTH_SHORT).show();
 
                 }
             });
-//            ArrayAdapter adapter1 = new ArrayAdapter(this, R.layout.text_view,R.id.tv1, list);
-//            mListView.setAdapter(adapter1);
         }
     }
 
-    public static ArrayList<Place> search(double lat, double lng, int radius) {
-        ArrayList<Place> resultList = null;
+    public static ArrayList<RestaurantBO> search(double lat, double lng, int radius) {
+        ArrayList<RestaurantBO> resultList = null;
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
@@ -137,13 +127,13 @@ public class DisplayRestaurants extends AppCompatActivity {
             JSONArray predsJsonArray = jsonObj.getJSONArray("results");
 
             // Extract the descriptions from the results
-            resultList = new ArrayList<Place>(predsJsonArray.length());
+            resultList = new ArrayList<RestaurantBO>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-                Place place = new Place();
+                RestaurantBO place = new RestaurantBO();
                 place.reference = predsJsonArray.getJSONObject(i).getString("reference");
-                place.name = predsJsonArray.getJSONObject(i).getString("name");
-                place.rating = predsJsonArray.getJSONObject(i).getInt("rating");
-                place.location = predsJsonArray.getJSONObject(i).getString("vicinity");
+                place.restaurantName = predsJsonArray.getJSONObject(i).getString("name");
+                place.restaurantRating = predsJsonArray.getJSONObject(i).getInt("rating");
+                place.restaurantAddress = predsJsonArray.getJSONObject(i).getString("vicinity");
 
 
 
@@ -157,44 +147,4 @@ public class DisplayRestaurants extends AppCompatActivity {
     }
 
 
-    //Value Object for the ArrayList
-    public static class Place {
-        private String reference;
-        private String name;
-        private int image;
-        private int rating;
-        private String location;
-
-        public String getLocation() {
-            return location;
-        }
-
-        public void setLocation(String location) {
-            this.location = location;
-        }
-
-        public int getRating() {
-            return rating;
-        }
-
-        public void setRating(int rating) {
-            this.rating = rating;
-        }
-
-        public int getImage() {
-            return image;
-        }
-
-        public void setImage(int image) {
-            this.image = image;
-        }
-
-        public Place(){
-            super();
-        }
-        @Override
-        public String toString(){
-            return this.name; //This is what returns the name of each restaurant for array list
-        }
-    }
 }

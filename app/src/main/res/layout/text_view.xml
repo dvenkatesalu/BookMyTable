@@ -13,12 +13,22 @@
         android:singleLine="true"
         android:gravity="left"
         android:layout_height="fill_parent"/>
-
+    <RatingBar
+        android:id="@+id/listitemrating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"
+        android:isIndicator="true"
+        android:max="5" />
     <TextView
         android:id="@+id/tv1"
         android:textColor="#FFFFFF"
         android:padding="10dp"
-        android:textSize="20sp"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
         android:layout_width="fill_parent"
         android:singleLine="true"
         android:gravity="left"
