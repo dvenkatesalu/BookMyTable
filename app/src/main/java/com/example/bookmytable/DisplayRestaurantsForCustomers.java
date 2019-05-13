@@ -3,8 +3,13 @@ package com.example.bookmytable;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,12 +43,55 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
 
     ArrayList<RestaurantBO> restaurants;
 
+    private View mLayout;
+
+    public static DrawerLayout mDrawer;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_restaurant);
+        setContentView(R.layout.search_restaurant_user);
+
+        mLayout = findViewById(R.id.search_restaurant_user);
+
+        mDrawer = findViewById(R.id.search_restaurant_user);
+        t = new ActionBarDrawerToggle(this, mDrawer,R.string.Open, R.string.Close);
+
+        mDrawer.addDrawerListener(t);
+        t.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nv = findViewById(R.id.nv2);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id)
+                {
+                    case R.id.bookings:
+                        startActivity(new Intent(DisplayRestaurantsForCustomers.this,BookingActivity.class));
+
+                    case R.id.book:
+                        startActivity(new Intent(DisplayRestaurantsForCustomers.this,DisplayRestaurantsForCustomers.class));
+                        break;
+                    case R.id.signout:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(DisplayRestaurantsForCustomers.this,LoginActivity.class));
+                        break;
+                    default:
+                        return true;
+                }
+
+
+                return true;
+
+            }
+        });
 
         getRestaurantsToDisplay();
 
