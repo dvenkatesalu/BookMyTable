@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +42,8 @@ public class DisplayRestaurants extends AppCompatActivity {
     //private static String[] readauthor = new String[]{};
     private static Integer[] restRating = new Integer[]{};
     private static RestaurantsAdapter restAdapter;
+    ArrayList<RestaurantBO> restaurantBO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         View contentView = inflater.inflate(R.layout.search_restaurant, null, false);
         mDrawer.addView(contentView,0);*/
 
-//        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.search_restaurant);
 
         Intent intent = getIntent();
@@ -69,10 +75,26 @@ public class DisplayRestaurants extends AppCompatActivity {
 
 //            restAdapter = new RestaurantsAdapter(this, restname, restLocation, restRating);
 //            mListView.setAdapter(restAdapter);
-//            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view, list);
+            //restAdapter= new RestaurantsAdapter(restaurantBO,getApplicationContext());
+             // CustomAdapter adapter = new CustomAdapter(this, R.layout.text_view, list);
 //            mListView.setAdapter(adapter);
             ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view,R.id.tv, list);
             mListView.setAdapter(adapter);
+
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    LinearLayout ll = (LinearLayout) view;
+                    TextView tv = (TextView) ll.findViewById(R.id.tv);
+                    final String text = tv.getText().toString();
+
+                    // selected item
+
+
+                    Toast.makeText(getApplicationContext(), "Selected Item :" +text, Toast.LENGTH_SHORT).show();
+
+                }
+            });
 //            ArrayAdapter adapter1 = new ArrayAdapter(this, R.layout.text_view,R.id.tv1, list);
 //            mListView.setAdapter(adapter1);
         }
@@ -177,7 +199,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         }
         @Override
         public String toString(){
-            return this.name+this.rating+this.location; //This is what returns the name of each restaurant for array list
+            return this.name; //This is what returns the name of each restaurant for array list
         }
     }
 }
