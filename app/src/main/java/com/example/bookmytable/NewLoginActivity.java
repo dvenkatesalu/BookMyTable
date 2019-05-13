@@ -84,7 +84,7 @@ public class NewLoginActivity extends AppCompatActivity {
                     UserInfoBO userInfo = dataSnapshot.getValue(UserInfoBO.class);
                     Log.d("Retrieving user :", userInfo.toString());
                 } else {
-                    adduserDataToFB(userInfo, key);
+                    adduserDataToFB(userInfo, key, FirebaseDatabase.getInstance().getReference("users").child("customer"));
                 }
 
             }
@@ -97,15 +97,12 @@ public class NewLoginActivity extends AppCompatActivity {
         startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
     }
 
-    private void adduserDataToFB( UserInfoBO user, String key){
+    private void adduserDataToFB( UserInfoBO user, String key, DatabaseReference dbRef){
         Toast.makeText(NewLoginActivity.this, "Inside add to db.",
                 Toast.LENGTH_SHORT).show();
-        //Always get firebase DB instance like below for any DB operation on firebase.
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         //Get Reference to the new db row created with key ID
-        DatabaseReference fbRef =
-                database.getReference("users").child("customer").child(key);
+        DatabaseReference fbRef = dbRef.child(key);
 
         //fbRef.setValue(user);
         //Set the name
@@ -145,7 +142,7 @@ public class NewLoginActivity extends AppCompatActivity {
                     Log.d("Retrieving user :", userInfo.toString());
                     startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
                 } else {
-                    adduserDataToFB(userInfo, key);
+                    adduserDataToFB(userInfo, key, FirebaseDatabase.getInstance().getReference("users").child("restaurant"));
                 }
 
             }
