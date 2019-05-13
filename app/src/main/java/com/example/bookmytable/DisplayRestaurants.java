@@ -42,12 +42,7 @@ public class DisplayRestaurants extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Keep the Nav Drawer, inflate a view as part of the nav link
-        /*LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.search_restaurant, null, false);
-        mDrawer.addView(contentView,0);*/
-
-//        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.search_restaurant);
 
         Intent intent = getIntent();
