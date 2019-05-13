@@ -69,13 +69,13 @@ public class CustomAdapter extends ArrayAdapter<RestaurantBO> implements View.On
 //        image.setImageResource(currentMovie.getmImageDrawable());
 
         TextView name = (TextView) listItem.findViewById(R.id.tv);
-        name.setText(currentMovie.getRestaurantName());
+        name.setText(currentMovie.getName());
 
         TextView release = (TextView) listItem.findViewById(R.id.tv1);
-        release.setText(currentMovie.getRestaurantAddress());
+        release.setText(currentMovie.getAddress());
 
         RatingBar ratingBar = (RatingBar)listItem.findViewById(R.id.listitemrating);
-        ratingBar.setRating(currentMovie.getRestaurantRating());
+        ratingBar.setRating(currentMovie.getRatingbar());
 
         return listItem;
     }
