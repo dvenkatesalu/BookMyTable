@@ -48,7 +48,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         View contentView = inflater.inflate(R.layout.search_restaurant, null, false);
         mDrawer.addView(contentView,0);*/
 
-        super.onCreate(savedInstanceState);
+//        super.onCreate(savedInstanceState);
         setContentView(R.layout.search_restaurant);
 
         Intent intent = getIntent();
@@ -68,10 +68,14 @@ public class DisplayRestaurants extends AppCompatActivity {
         {
             mListView = (ListView) findViewById(R.id.listView);
 
-            restAdapter = new RestaurantsAdapter(this, restname, restLocation, restRating);
-            mListView.setAdapter(restAdapter);
+//            restAdapter = new RestaurantsAdapter(this, restname, restLocation, restRating);
+//            mListView.setAdapter(restAdapter);
 //            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view, list);
 //            mListView.setAdapter(adapter);
+            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view,R.id.tv, list);
+            mListView.setAdapter(adapter);
+//            ArrayAdapter adapter1 = new ArrayAdapter(this, R.layout.text_view,R.id.tv1, list);
+//            mListView.setAdapter(adapter1);
         }
     }
 
@@ -111,6 +115,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         }
 
         try {
+
             // Create a JSON object hierarchy from the results
             JSONObject jsonObj = new JSONObject(jsonResults.toString());
             JSONArray predsJsonArray = jsonObj.getJSONArray("results");
@@ -122,6 +127,7 @@ public class DisplayRestaurants extends AppCompatActivity {
                 place.reference = predsJsonArray.getJSONObject(i).getString("reference");
                 place.name = predsJsonArray.getJSONObject(i).getString("name");
                 place.rating = predsJsonArray.getJSONObject(i).getInt("rating");
+                place.location = predsJsonArray.getJSONObject(i).getString("vicinity");
 
 
 
@@ -141,6 +147,15 @@ public class DisplayRestaurants extends AppCompatActivity {
         private String name;
         private int image;
         private int rating;
+        private String location;
+
+        public String getLocation() {
+            return location;
+        }
+
+        public void setLocation(String location) {
+            this.location = location;
+        }
 
         public int getRating() {
             return rating;
@@ -163,7 +178,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         }
         @Override
         public String toString(){
-            return this.name; //This is what returns the name of each restaurant for array list
+            return this.name+this.rating+this.location; //This is what returns the name of each restaurant for array list
         }
     }
 }
