@@ -41,7 +41,6 @@ public class DisplayRestaurants extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
         //Keep the Nav Drawer, inflate a view as part of the nav link
         /*LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
