@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,9 +81,13 @@ public class DisplayRestaurants extends AppCompatActivity {
                                         int position, long id) {
                     LinearLayout ll = (LinearLayout) view;
                     TextView tv = (TextView) ll.findViewById(R.id.tv);
+                    TextView tv1 = (TextView) ll.findViewById(R.id.tv1);
+                    RatingBar rate = (RatingBar)ll.findViewById(R.id.ratingBar);
                     final String text = tv.getText().toString();
+                    final String location = tv1.getText().toString();
+                    final Float ratingOfRestaurant = rate.getRating();
 
-                    setRestaurantToOwner(text);
+                    setRestaurantToOwner(text,location,ratingOfRestaurant);
                     Toast.makeText(getApplicationContext(), "Restaurant added to Database!", Toast.LENGTH_SHORT).show();
                     //TODO: LAND THE USER ON APPROVE BOOKINGS
 
@@ -91,7 +96,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         }
     }
 
-    public void setRestaurantToOwner( String resName ){
+    public void setRestaurantToOwner( String resName, String loc, Float ratings ){
         Toast.makeText(DisplayRestaurants.this, "Inside add resName to db.",
                 Toast.LENGTH_SHORT).show();
 
@@ -101,9 +106,13 @@ public class DisplayRestaurants extends AppCompatActivity {
 
         String key = user.getDisplayName() + "_" + user.getUid();
 
-
+        String ratingstars= Float.toString(ratings);
         final DatabaseReference keyRef =
                 database.getReference("restaurants").child(resName);
+        final DatabaseReference keyRef1 =
+                database.getReference("restaurants").child(loc);
+        final DatabaseReference keyRef2 =
+                database.getReference("restaurants").child(ratingstars);
         keyRef.child("ownerId").setValue(key);
     }
 
@@ -153,9 +162,9 @@ public class DisplayRestaurants extends AppCompatActivity {
             for (int i = 0; i < predsJsonArray.length(); i++) {
                 RestaurantBO place = new RestaurantBO();
                 place.reference = predsJsonArray.getJSONObject(i).getString("reference");
-                place.restaurantName = predsJsonArray.getJSONObject(i).getString("name");
-                place.restaurantRating = predsJsonArray.getJSONObject(i).getInt("rating");
-                place.restaurantAddress = predsJsonArray.getJSONObject(i).getString("vicinity");
+                place.name = predsJsonArray.getJSONObject(i).getString("name");
+                place.ratingbar = predsJsonArray.getJSONObject(i).getInt("rating");
+                place.address = predsJsonArray.getJSONObject(i).getString("vicinity");
 
 
 
