@@ -21,13 +21,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final int PERMISSION_REQUEST_LOCATION = 0;
     private View mLayout;
 
-    protected DrawerLayout mDrawer;
+    public static DrawerLayout mDrawer;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         setContentView(R.layout.activity_main);
         mLayout = findViewById(R.id.activity_main);
 
-        mDrawer = (DrawerLayout)findViewById(R.id.activity_main);
+        mDrawer = findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, mDrawer,R.string.Open, R.string.Close);
 
         mDrawer.addDrawerListener(t);
@@ -45,32 +47,35 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //nv = (NavigationView)findViewById(R.id.nv);
-//        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                int id = item.getItemId();
-//                switch(id)
-//                {
-//                    case R.id.settings:
-//                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();break;
-//                    case R.id.bookings:
-//                        Toast.makeText(MainActivity.this, "My Bookings",Toast.LENGTH_SHORT).show();break;
-//                    case R.id.book:
-//                        showRestaurants();
-//                        break;
-//                    case R.id.signout:
-//                        Toast.makeText(MainActivity.this, "Sign Out",Toast.LENGTH_SHORT).show();break;
-//                    default:
-//                        return true;
-//                }
-//
-//
-//                return true;
-//
-//            }
-//        });
-//
+        nv = findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id)
+                {
+                    case R.id.settings:
+                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();break;
+                    case R.id.bookings:
+                        startActivity(new Intent(MainActivity.this,BookingActivity.class));
+                        Toast.makeText(MainActivity.this, "My Bookings",Toast.LENGTH_SHORT).show();break;
+                    case R.id.book:
+                        showRestaurants();
+                        break;
+                    case R.id.signout:
+                        signOut();
+                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        break;
+                    default:
+                        return true;
+                }
+
+
+                return true;
+
+            }
+        });
+
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,5 +177,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void signOut(){
+        FirebaseAuth.getInstance().signOut();
     }
 }

@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class DisplayRestaurants extends MainActivity {
+public class DisplayRestaurants extends AppCompatActivity {
 
     private ListView mListView;
     private static final String API_KEY = "AIzaSyDi1OagTMGaVbLZb5UW8rHpKTWkmgaMZK4";
@@ -44,9 +44,12 @@ public class DisplayRestaurants extends MainActivity {
         super.onCreate(savedInstanceState);
 
         //Keep the Nav Drawer, inflate a view as part of the nav link
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        /*LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.search_restaurant, null, false);
-        mDrawer.addView(contentView,0);
+        mDrawer.addView(contentView,0);*/
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.search_restaurant);
 
         Intent intent = getIntent();
         String longitude = intent.getStringExtra("long");
