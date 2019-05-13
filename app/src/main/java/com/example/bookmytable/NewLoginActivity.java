@@ -21,6 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 
+import java.util.List;
+import java.util.Map;
+
 public class NewLoginActivity extends AppCompatActivity {
 
     Button customerButton;
@@ -84,7 +87,7 @@ public class NewLoginActivity extends AppCompatActivity {
                     UserInfoBO userInfo = dataSnapshot.getValue(UserInfoBO.class);
                     Log.d("Retrieving user :", userInfo.toString());
                 } else {
-                    adduserDataToFB(userInfo, fbRef);
+                    adduserDataToFB(userInfo, fbRef, key, true);
                 }
 
             }
@@ -97,9 +100,16 @@ public class NewLoginActivity extends AppCompatActivity {
         startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
     }
 
-    private void adduserDataToFB( UserInfoBO user, DatabaseReference fbRef){
+    private void adduserDataToFB( UserInfoBO user, DatabaseReference fbRef, String key, Boolean isCustomer){
         Toast.makeText(NewLoginActivity.this, "Inside add to db.",
                 Toast.LENGTH_SHORT).show();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        final DatabaseReference keyRef =
+                database.getReference("userKeys").child(key);
+        keyRef.child("key").setValue(key);
+        keyRef.child("isCustomer").setValue(isCustomer);
 
         fbRef.child("name").setValue(user.getName());
         fbRef.child("email").setValue(user.getEmail());
@@ -135,9 +145,9 @@ public class NewLoginActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()) {
                     UserInfoBO userInfo = dataSnapshot.getValue(UserInfoBO.class);
                     Log.d("Retrieving user :", userInfo.toString());
-                    startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
+                    //startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
                 } else {
-                    adduserDataToFB(userInfo, fbRef);
+                    adduserDataToFB(userInfo, fbRef, key, false);
                 }
 
             }
@@ -148,8 +158,16 @@ public class NewLoginActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: CHANGE TO RESTAURANT LANDING SCREEN
-        //startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
-
+        Intent intent = new Intent(this,DisplayRestaurants.class);
+        // Double longitude = location.getLongitude();
+        Double longitude = 151.1957362;
+        System.out.println("I am longitude"+longitude);
+        //  Double latitude = location.getLatitude();
+        Double latitude = -33.8670522;
+        String longit = Double.toString(longitude);
+        String lat = Double.toString(latitude);
+        intent.putExtra("long", longit);
+        intent.putExtra("lat", lat);
+        startActivity(intent);
     }
 }

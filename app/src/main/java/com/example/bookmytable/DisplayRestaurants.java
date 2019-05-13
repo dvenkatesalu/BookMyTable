@@ -14,6 +14,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -77,12 +82,29 @@ public class DisplayRestaurants extends AppCompatActivity {
                     TextView tv = (TextView) ll.findViewById(R.id.tv);
                     final String text = tv.getText().toString();
 
-                    // selected item
-                    Toast.makeText(getApplicationContext(), "Selected Item :" +text, Toast.LENGTH_SHORT).show();
+                    setRestaurantToOwner(text);
+                    Toast.makeText(getApplicationContext(), "Restaurant added to Database!", Toast.LENGTH_SHORT).show();
+                    //TODO: LAND THE USER ON APPROVE BOOKINGS
 
                 }
             });
         }
+    }
+
+    public void setRestaurantToOwner( String resName ){
+        Toast.makeText(DisplayRestaurants.this, "Inside add resName to db.",
+                Toast.LENGTH_SHORT).show();
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        String key = user.getDisplayName() + "_" + user.getUid();
+
+
+        final DatabaseReference keyRef =
+                database.getReference("restaurants").child(resName);
+        keyRef.child("ownerId").setValue(key);
     }
 
     public static ArrayList<RestaurantBO> search(double lat, double lng, int radius) {
