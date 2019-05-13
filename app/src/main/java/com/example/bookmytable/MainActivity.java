@@ -46,31 +46,31 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //nv = (NavigationView)findViewById(R.id.nv);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                switch(id)
-                {
-                    case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();break;
-                    case R.id.bookings:
-                        Toast.makeText(MainActivity.this, "My Bookings",Toast.LENGTH_SHORT).show();break;
-                    case R.id.book:
-                        showRestaurants();
-                        break;
-                    case R.id.signout:
-                        Toast.makeText(MainActivity.this, "Sign Out",Toast.LENGTH_SHORT).show();break;
-                    default:
-                        return true;
-                }
-
-
-                return true;
-
-            }
-        });
-
+//        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                int id = item.getItemId();
+//                switch(id)
+//                {
+//                    case R.id.settings:
+//                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();break;
+//                    case R.id.bookings:
+//                        Toast.makeText(MainActivity.this, "My Bookings",Toast.LENGTH_SHORT).show();break;
+//                    case R.id.book:
+//                        showRestaurants();
+//                        break;
+//                    case R.id.signout:
+//                        Toast.makeText(MainActivity.this, "Sign Out",Toast.LENGTH_SHORT).show();break;
+//                    default:
+//                        return true;
+//                }
+//
+//
+//                return true;
+//
+//            }
+//        });
+//
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,11 +89,11 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             Intent intent = new Intent(this,DisplayRestaurants.class);
             LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-           Double longitude = location.getLongitude();
-            // Double longitude = 151.1957362;
+          // Double longitude = location.getLongitude();
+             Double longitude = 151.1957362;
             System.out.println("I am longitude"+longitude);
-            Double latitude = location.getLatitude();
-          //  Double latitude = -33.8670522;
+          //  Double latitude = location.getLatitude();
+            Double latitude = -33.8670522;
             System.out.println("I am latitude"+latitude);
             String longit = Double.toString(longitude);
             String lat = Double.toString(latitude);

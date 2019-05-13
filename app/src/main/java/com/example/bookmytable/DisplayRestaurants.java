@@ -33,6 +33,11 @@ public class DisplayRestaurants extends MainActivity {
     private static final String TYPE_SEARCH = "/nearbysearch";
     private static final String OUT_JSON = "/json?";
     private static final String LOG_TAG = "ListRest";
+    private static String[] restname = new String[]{};
+    private static String[] restLocation = new String[]{};
+    //private static String[] readauthor = new String[]{};
+    private static Integer[] restRating = new Integer[]{};
+    private static RestaurantsAdapter restAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +64,11 @@ public class DisplayRestaurants extends MainActivity {
         if (list != null)
         {
             mListView = (ListView) findViewById(R.id.listView);
-            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view, list);
-            mListView.setAdapter(adapter);
+
+            restAdapter = new RestaurantsAdapter(this, restname, restLocation, restRating);
+            mListView.setAdapter(restAdapter);
+//            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view, list);
+//            mListView.setAdapter(adapter);
         }
     }
 
@@ -110,6 +118,8 @@ public class DisplayRestaurants extends MainActivity {
                 Place place = new Place();
                 place.reference = predsJsonArray.getJSONObject(i).getString("reference");
                 place.name = predsJsonArray.getJSONObject(i).getString("name");
+                place.rating = predsJsonArray.getJSONObject(i).getInt("rating");
+
 
 
                 resultList.add(place);
@@ -126,7 +136,24 @@ public class DisplayRestaurants extends MainActivity {
     public static class Place {
         private String reference;
         private String name;
-        private String image;
+        private int image;
+        private int rating;
+
+        public int getRating() {
+            return rating;
+        }
+
+        public void setRating(int rating) {
+            this.rating = rating;
+        }
+
+        public int getImage() {
+            return image;
+        }
+
+        public void setImage(int image) {
+            this.image = image;
+        }
 
         public Place(){
             super();
