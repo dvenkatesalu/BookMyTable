@@ -73,7 +73,7 @@ public class NewLoginActivity extends AppCompatActivity {
         // Get firebase DB instance
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference fbRef =
+        final DatabaseReference fbRef =
                 database.getReference("users").child("customer").child(key);
 
         fbRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -84,7 +84,7 @@ public class NewLoginActivity extends AppCompatActivity {
                     UserInfoBO userInfo = dataSnapshot.getValue(UserInfoBO.class);
                     Log.d("Retrieving user :", userInfo.toString());
                 } else {
-                    adduserDataToFB(userInfo, key);
+                    adduserDataToFB(userInfo, fbRef);
                 }
 
             }
@@ -97,18 +97,10 @@ public class NewLoginActivity extends AppCompatActivity {
         startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
     }
 
-    private void adduserDataToFB( UserInfoBO user, String key){
+    private void adduserDataToFB( UserInfoBO user, DatabaseReference fbRef){
         Toast.makeText(NewLoginActivity.this, "Inside add to db.",
                 Toast.LENGTH_SHORT).show();
-        //Always get firebase DB instance like below for any DB operation on firebase.
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        //Get Reference to the new db row created with key ID
-        DatabaseReference fbRef =
-                database.getReference("users").child("customer").child(key);
-
-        //fbRef.setValue(user);
-        //Set the name
         fbRef.child("name").setValue(user.getName());
         fbRef.child("email").setValue(user.getEmail());
         fbRef.child("photo").setValue(user.getPhotoUrl().toString());
@@ -133,7 +125,7 @@ public class NewLoginActivity extends AppCompatActivity {
         // Get firebase DB instance
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference fbRef =
+        final DatabaseReference fbRef =
                 database.getReference("users").child("restaurant").child(key);
 
         fbRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -145,7 +137,7 @@ public class NewLoginActivity extends AppCompatActivity {
                     Log.d("Retrieving user :", userInfo.toString());
                     startActivity(new Intent(NewLoginActivity.this,MainActivity.class));
                 } else {
-                    adduserDataToFB(userInfo, key);
+                    adduserDataToFB(userInfo, fbRef);
                 }
 
             }
