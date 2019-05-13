@@ -54,10 +54,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 int id = item.getItemId();
                 switch(id)
                 {
-                    case R.id.bookings:
+                    case R.id.approve:
                         startActivity(new Intent(MainActivity.this,BookingActivity.class));
-
-                    case R.id.book:
+                    case R.id.ownerBook:
                         startActivity(new Intent(MainActivity.this,DisplayRestaurantsForCustomers.class));
                         break;
                     case R.id.signout:
