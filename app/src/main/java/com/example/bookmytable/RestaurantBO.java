@@ -3,42 +3,33 @@ package com.example.bookmytable;
 import java.io.Serializable;
 
 public class RestaurantBO implements Serializable {
-    String restaurantName;
-    String restaurantImage;
-    String restaurantAddress;
-    float restaurantRating;
+    String name;
+    String address;
+    String ownerId;
 
-    public String getRestaurantName() {
-        return restaurantName;
+    public String getOwnerId() {
+        return ownerId;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public String getRestaurantImage() {
-        return restaurantImage;
+    public String getName() {
+        return name;
     }
 
-    public void setRestaurantImage(String restaurantImage) {
-        this.restaurantImage = restaurantImage;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getRestaurantAddress() {
-        return restaurantAddress;
+
+    public String getAddress() {
+        return address;
     }
 
-    public void setRestaurantAddress(String restaurantAddress) {
-        this.restaurantAddress = restaurantAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
-
-    public float getRestaurantRating() {
-        return restaurantRating;
-    }
-
-    public void setRestaurantRating(float restaurantRating) {
-        this.restaurantRating = restaurantRating;
-    }
-
 
 }
