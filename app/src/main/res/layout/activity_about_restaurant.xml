@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutRestaurant">
+    tools:context=".AboutRestaurant"
+    android:background="@drawable/restaurantwallpaper">
 
     <TextView
         android:id="@+id/textView5"
@@ -13,6 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:textSize="18sp"
+        android:textColor="#000000"
         android:layout_marginTop="50dp"
         android:text="Restaurant "
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +28,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="50dp"
+        android:textColor="#000000"
         android:text="Get Restaurant Name"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +42,7 @@
         android:layout_marginTop="20dp"
         android:text="Details"
         android:textSize="18sp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -46,6 +50,7 @@
         android:id="@+id/textView_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
         android:layout_marginTop="20dp"
@@ -62,6 +67,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="28dp"
         android:text="Ratings"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -73,6 +79,7 @@
         android:layout_marginStart="57dp"
         android:layout_marginLeft="57dp"
         android:layout_marginTop="20dp"
+        android:progressTint="@color/orangeRed"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView_description" />
 
@@ -84,6 +91,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="45dp"
         android:text="Location"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -97,6 +105,7 @@
         android:layout_marginTop="20dp"
         android:drawableRight="@drawable/ic_location_on_black_24dp"
         android:text="Get Location"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
@@ -124,6 +133,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="70dp"
         android:textSize="18sp"
+        android:textColor="#000000"
         android:text="Available Dates"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -136,6 +146,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="23dp"
         android:text="mm/dd/yyyy"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView_reviews" />
 

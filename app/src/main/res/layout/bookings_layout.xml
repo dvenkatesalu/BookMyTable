@@ -76,6 +76,8 @@
         android:layout_marginEnd="44dp"
         android:layout_marginRight="44dp"
         android:text="Button"
+        android:textColor="#000000"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
@@ -90,6 +92,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="64dp"
         android:text="Button"
+        android:textColor="#000000"
+        android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -104,6 +108,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="72dp"
         android:text="TextView"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblMakeReservation" />
 
