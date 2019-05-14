@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterRestaurantActivity">
+    tools:context=".RegisterRestaurantActivity"
+    android:background="@drawable/restaurantwallpaper">
 
     <TextView
         android:id="@+id/textView2"
@@ -14,6 +15,7 @@
         android:text="Register"
         android:textSize="20sp"
         android:textStyle="italic"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +29,7 @@
         android:hint="  Full Name"
         android:inputType="textPersonName"
         android:padding="16dp"
+        android:textColor="#000000"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -40,6 +43,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:textColor="#000000"
         android:drawableLeft="@drawable/ic_home_black_24dp"
         android:ems="10"
         android:hint="  Address Line 1"
@@ -57,6 +61,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="32dp"
+        android:textColor="#000000"
         android:drawableLeft="@drawable/ic_home_black_24dp"
         android:ems="10"
         android:hint="  Address Line 2"
@@ -74,6 +79,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="32dp"
+        android:textColor="#000000"
         android:drawableLeft="@drawable/ic_call_black_24dp"
         android:ems="10"
         android:hint="  Phone Number"
@@ -90,6 +96,7 @@
         android:layout_marginTop="16dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="#000000"
         android:text="Description:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_phonenum_register_restaurant" />
@@ -104,6 +111,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:textColor="#000000"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,6 +125,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Next"
+        android:background="@color/blue"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_description_register_restaurant" />
 

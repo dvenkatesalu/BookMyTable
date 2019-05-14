@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/restaurantwallpaper">
 
     <TextView
         android:id="@+id/textView_restaurant_name_booking_past"
@@ -14,6 +15,7 @@
         android:layout_marginTop="32dp"
         android:text="Get Restaurant Name"
         android:textSize="18sp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +29,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="April 10 2019 8pm"
+        android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:text="Leave A Review"
+        android:background="@color/blue"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_restaurant_name_booking_past" />
