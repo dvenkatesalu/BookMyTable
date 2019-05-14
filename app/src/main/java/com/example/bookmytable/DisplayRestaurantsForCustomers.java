@@ -96,18 +96,8 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
 
             }
         });
-        // get data from Firebase database
 
-        RestaurantBO restaurantBO = new RestaurantBO();
-        restaurantBO.address = "17 Lime Street, Sydney";
-        restaurantBO.name = "Steersons Steakhouse";
-        restaurantBO.ownerId ="Dharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
-        restaurantBO.rating = 3;
-        restaurantBO.reference = "";
-        restaurantBO.resId = "Steersons SteakhouseDharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
-        restaurants.add(restaurantBO);
-
-        //getRestaurantsToDisplay();
+        getRestaurantsToDisplay();
 
 
         if (restaurants != null)
@@ -157,44 +147,7 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
 
                 Log.d("Retrieved restaurant", dataSnapshot.getValue().toString());
 
-                RestaurantBO restaurantBO = new RestaurantBO();
-                restaurantBO.address = "17 Lime Street, Sydney";
-                restaurantBO.name = "Steersons Steakhouse";
-                restaurantBO.ownerId ="Dharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
-                restaurantBO.rating = 3;
-                restaurantBO.reference = "";
-                restaurantBO.resId = "Steersons SteakhouseDharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
-                restaurants.add(restaurantBO);
-
-
-                //restaurants.add((RestaurantBO)dataSnapshot.getValue());
-
-
-
-
-                //Map<String, RestaurantBO> restaurantMap = new HashMap<>();
-
-
-
-                /*List<HashMap<String, RestaurantBO>> restaurantList = (List<HashMap<String, RestaurantBO>> )dataSnapshot.;
-
-                Iterator iterator = restaurantList.iterator();
-                while(iterator.hasNext()) {
-                    HashMap<String, RestaurantBO> restaurantMap = (HashMap<String, RestaurantBO>) iterator.next();
-                    for (Map.Entry<String, RestaurantBO> entry : restaurantMap.entrySet()) {
-                        restaurants.add((RestaurantBO)entry.getValue());
-                        Log.d("Retrieved restaurant", entry.getValue().toString());
-                    }
-                }*/
-
-
-                /*Set set = restaurantMap.entrySet();
-                Iterator iterator = set.iterator();
-                while(iterator.hasNext()) {
-                    Map.Entry mentry = (Map.Entry)iterator.next();
-                    restaurants.add((RestaurantBO) mentry.getValue());
-                    Log.d("Retrieved restaurant", mentry.getValue().toString());
-                }*/
+                restaurants.add((RestaurantBO)dataSnapshot.getValue());
             }
 
             @Override

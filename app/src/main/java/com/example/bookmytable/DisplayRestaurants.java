@@ -43,7 +43,6 @@ public class DisplayRestaurants extends AppCompatActivity {
     private static String[] restname = new String[]{};
     private static String[] restLocation = new String[]{};
     private static Integer[] restRating = new Integer[]{};
-    private static RestaurantsAdapter restAdapter;
     ArrayList<RestaurantBO> restaurantBO;
 
 
