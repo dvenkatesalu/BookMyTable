@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class RestaurantBO implements Serializable {
     String name;
     String address;
-    Integer ratingbar;
+    Integer rating;
 
     String ownerId;
     public String reference;
@@ -27,12 +27,12 @@ public class RestaurantBO implements Serializable {
         this.resId = resId;
     }
 
-    public Integer getRatingbar() {
-        return ratingbar;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setRatingbar(Integer ratingbar) {
-        this.ratingbar = ratingbar;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     public RestaurantBO() {

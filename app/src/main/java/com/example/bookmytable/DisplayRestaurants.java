@@ -1,14 +1,11 @@
 package com.example.bookmytable;
-import android.content.Context;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -87,7 +84,7 @@ public class DisplayRestaurants extends AppCompatActivity {
                     final String location = tv1.getText().toString();
                     final Float ratingOfRestaurant = rate.getRating();
 
-                    setRestaurantToOwner(text,location,Math.round(ratingOfRestaurant));
+                    setRestaurantToOwner(text,location,ratingOfRestaurant);
                     Toast.makeText(getApplicationContext(), "Restaurant added to Database!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(DisplayRestaurants.this,MainActivity.class));
 
@@ -96,7 +93,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         }
     }
 
-    public void setRestaurantToOwner( String resName, String loc, Integer ratings ){
+    public void setRestaurantToOwner( String resName, String loc, Float ratings ){
         Toast.makeText(DisplayRestaurants.this, "Inside add resName to db.",
                 Toast.LENGTH_SHORT).show();
 
@@ -107,7 +104,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         String key = user.getDisplayName() + "_" + user.getUid();
         String resId = resName + key;
         DatabaseReference keyRef =
-                database.getReference("restaurants").child(resId);
+                database.getReference("restaurants");//.child(resId);
         keyRef.child("name").setValue(resName);
         keyRef.child("address").setValue(loc);
        keyRef.child("rating").setValue(ratings);
@@ -163,7 +160,7 @@ public class DisplayRestaurants extends AppCompatActivity {
                 RestaurantBO place = new RestaurantBO();
                 place.reference = predsJsonArray.getJSONObject(i).getString("reference");
                 place.name = predsJsonArray.getJSONObject(i).getString("name");
-                place.ratingbar = predsJsonArray.getJSONObject(i).getInt("rating");
+                place.rating = predsJsonArray.getJSONObject(i).getInt("rating");
                 place.address = predsJsonArray.getJSONObject(i).getString("vicinity");
                 resultList.add(place);
             }

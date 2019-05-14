@@ -56,19 +56,19 @@ public class CustomAdapter extends ArrayAdapter<RestaurantBO> implements View.On
         if(listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.text_view,parent,false);
 
-        RestaurantBO currentMovie = dataSet.get(position);
+        RestaurantBO currentRestaurant = dataSet.get(position);
 
 //        ImageView image = (ImageView)listItem.findViewById(R.id.imageView_poster);
 //        image.setImageResource(currentMovie.getmImageDrawable());
 
         TextView name = (TextView) listItem.findViewById(R.id.tv);
-        name.setText(currentMovie.getName());
+        name.setText(currentRestaurant.getName());
 
         TextView release = (TextView) listItem.findViewById(R.id.tv1);
-        release.setText(currentMovie.getAddress());
+        release.setText(currentRestaurant.getAddress());
 
-        RatingBar ratingBar = (RatingBar)listItem.findViewById(R.id.listitemrating);
-        ratingBar.setRating(currentMovie.getRatingbar());
+        /*RatingBar ratingBar = (RatingBar)listItem.findViewById(R.id.listitemrating);
+        ratingBar.setRating(currentRestaurant.getRating());*/
 
         return listItem;
     }

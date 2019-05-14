@@ -57,24 +57,37 @@ public class MakeBookingActivity extends AppCompatActivity {
         fromTime.setAdapter(adapter);
         toTime.setAdapter(adapter);
 
-        fromTime.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        fromTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 frmTme = parent.getItemAtPosition(position).toString();
             }
-        });
-
-        toTime.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                toTme = parent.getItemAtPosition(position).toString();
+            public void onNothingSelected(AdapterView<?> parent) {
+                toTme = "";
             }
         });
 
-        noOfPeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        toTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                toTme = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                toTme = "";
+            }
+        });
+
+        noOfPeople.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 pplCount = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                toTme = "";
             }
         });
 
@@ -104,7 +117,7 @@ public class MakeBookingActivity extends AppCompatActivity {
 
         book.customerId = user.getDisplayName() + "_" + user.getUid();
 
-        book.bookingId = book.customerId + book.restaurantId + book.date + book.fromtime + book.toTime;
+        book.bookingId = book.customerId + book.restaurantId + book.fromtime + book.toTime;
 
         DatabaseReference keyRef =
                 database.getReference("bookings").child(book.bookingId);

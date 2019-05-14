@@ -27,6 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class DisplayRestaurantsForCustomers extends AppCompatActivity {
 
@@ -39,7 +45,7 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
     private static final String OUT_JSON = "/json?";
     private static final String LOG_TAG = "ListRest";
 
-    ArrayList<RestaurantBO> restaurants;
+    ArrayList<RestaurantBO> restaurants = new ArrayList<>();
 
     private View mLayout;
 
@@ -116,7 +122,7 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
                     String resId = text + key;
 
                     // CALL MAKE RESERVATION
-                    Intent intent = new Intent(DisplayRestaurantsForCustomers.this,BookingsBO.class);
+                    Intent intent = new Intent(DisplayRestaurantsForCustomers.this, MakeBookingActivity.class);
                     intent.putExtra("resId", text);
                     startActivity(intent);
 
@@ -130,7 +136,7 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
     }
 
     public void getRestaurantsToDisplay(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference fbRef =
                 database.getReference("restaurants");
@@ -138,9 +144,47 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
         fbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    RestaurantBO res = dataSnapshot.getValue(RestaurantBO.class);
-                    Log.d("Retrieving user :", res.toString());
-                    restaurants.add(res);
+
+                Log.d("Retrieved restaurant", dataSnapshot.getValue().toString());
+
+                RestaurantBO restaurantBO = new RestaurantBO();
+                restaurantBO.address = "17 Lime Street, Sydney";
+                restaurantBO.name = "Steersons Steakhouse";
+                restaurantBO.ownerId ="Dharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
+                restaurantBO.rating = 3;
+                restaurantBO.reference = "";
+                restaurantBO.resId = "Steersons SteakhouseDharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
+                restaurants.add(restaurantBO);
+
+
+                //restaurants.add((RestaurantBO)dataSnapshot.getValue());
+
+
+
+
+                //Map<String, RestaurantBO> restaurantMap = new HashMap<>();
+
+
+
+                /*List<HashMap<String, RestaurantBO>> restaurantList = (List<HashMap<String, RestaurantBO>> )dataSnapshot.;
+
+                Iterator iterator = restaurantList.iterator();
+                while(iterator.hasNext()) {
+                    HashMap<String, RestaurantBO> restaurantMap = (HashMap<String, RestaurantBO>) iterator.next();
+                    for (Map.Entry<String, RestaurantBO> entry : restaurantMap.entrySet()) {
+                        restaurants.add((RestaurantBO)entry.getValue());
+                        Log.d("Retrieved restaurant", entry.getValue().toString());
+                    }
+                }*/
+
+
+                /*Set set = restaurantMap.entrySet();
+                Iterator iterator = set.iterator();
+                while(iterator.hasNext()) {
+                    Map.Entry mentry = (Map.Entry)iterator.next();
+                    restaurants.add((RestaurantBO) mentry.getValue());
+                    Log.d("Retrieved restaurant", mentry.getValue().toString());
+                }*/
             }
 
             @Override

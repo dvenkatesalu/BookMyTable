@@ -24,6 +24,7 @@
         <activity android:name=".CommonRegisterActivity" />
         <activity android:name=".RegisterRestaurantActivity" />
         <activity android:name=".MainActivity"/>
+        <activity android:name=".DisplayRestaurantsForCustomers"/>
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
