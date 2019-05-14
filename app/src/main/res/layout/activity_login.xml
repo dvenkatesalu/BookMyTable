@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:id="@+id/login_layout"
-    android:background="@drawable/restaurantbackground">
+    android:background="@drawable/restaurantwallpaper">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/loginButton"
