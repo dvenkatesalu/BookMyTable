@@ -118,7 +118,7 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
                     final String text = tv.getText().toString();
 
                     // CALL MAKE RESERVATION
-                    //Intent intent = new Intent(this,DisplayRestaurants.class);
+                    //Intent intent = new Intent(this,MakingBookingActivity.class);
                     //TODO SET THE CHOSEN BO HERE
                     //intent.putExtra("pickesRestaurant", longit);
                     //startActivity(intent);

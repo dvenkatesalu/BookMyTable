@@ -82,12 +82,12 @@ public class DisplayRestaurants extends AppCompatActivity {
                     LinearLayout ll = (LinearLayout) view;
                     TextView tv = (TextView) ll.findViewById(R.id.tv);
                     TextView tv1 = (TextView) ll.findViewById(R.id.tv1);
-                    RatingBar rate = (RatingBar)ll.findViewById(R.id.ratingBar);
+                    RatingBar rate = (RatingBar)ll.findViewById(R.id.listitemrating);
                     final String text = tv.getText().toString();
                     final String location = tv1.getText().toString();
                     final Float ratingOfRestaurant = rate.getRating();
 
-                    setRestaurantToOwner(text,location,ratingOfRestaurant);
+                    setRestaurantToOwner(text,location,Math.round(ratingOfRestaurant));
                     Toast.makeText(getApplicationContext(), "Restaurant added to Database!", Toast.LENGTH_SHORT).show();
                     //TODO: LAND THE USER ON APPROVE BOOKINGS
 
@@ -96,7 +96,7 @@ public class DisplayRestaurants extends AppCompatActivity {
         }
     }
 
-    public void setRestaurantToOwner( String resName, String loc, Float ratings ){
+    public void setRestaurantToOwner( String resName, String loc, Integer ratings ){
         Toast.makeText(DisplayRestaurants.this, "Inside add resName to db.",
                 Toast.LENGTH_SHORT).show();
 
@@ -106,14 +106,13 @@ public class DisplayRestaurants extends AppCompatActivity {
 
         String key = user.getDisplayName() + "_" + user.getUid();
 
-        String ratingstars= Float.toString(ratings);
-        final DatabaseReference keyRef =
+        DatabaseReference keyRef =
                 database.getReference("restaurants").child(resName);
-        final DatabaseReference keyRef1 =
-                database.getReference("restaurants").child(loc);
-        final DatabaseReference keyRef2 =
-                database.getReference("restaurants").child(ratingstars);
+        keyRef.child("name").setValue(resName);
+        keyRef.child("address").setValue(loc);
+       keyRef.child("rating").setValue(ratings);
         keyRef.child("ownerId").setValue(key);
+        keyRef.child("reference").setValue("");
     }
 
     public static ArrayList<RestaurantBO> search(double lat, double lng, int radius) {

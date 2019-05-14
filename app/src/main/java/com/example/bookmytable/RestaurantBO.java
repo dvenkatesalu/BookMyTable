@@ -1,7 +1,6 @@
 package com.example.bookmytable;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class RestaurantBO implements Serializable {
     String name;
@@ -10,7 +9,6 @@ public class RestaurantBO implements Serializable {
 
     String ownerId;
     public String reference;
-    ArrayList<RestaurantBO> list1;
 
     public Integer getRatingbar() {
         return ratingbar;
@@ -22,10 +20,6 @@ public class RestaurantBO implements Serializable {
 
     public RestaurantBO() {
 
-    }
-
-    public RestaurantBO(ArrayList<RestaurantBO> list1) {
-        this.list1 = list1;
     }
 
     public String getOwnerId() {
