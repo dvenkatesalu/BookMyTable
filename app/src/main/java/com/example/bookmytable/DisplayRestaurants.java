@@ -105,14 +105,15 @@ public class DisplayRestaurants extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         String key = user.getDisplayName() + "_" + user.getUid();
-
+        String resId = resName + key;
         DatabaseReference keyRef =
-                database.getReference("restaurants").child(resName);
+                database.getReference("restaurants").child(resId);
         keyRef.child("name").setValue(resName);
         keyRef.child("address").setValue(loc);
        keyRef.child("rating").setValue(ratings);
         keyRef.child("ownerId").setValue(key);
         keyRef.child("reference").setValue("");
+        keyRef.child("resId").setValue(resId);
     }
 
     public static ArrayList<RestaurantBO> search(double lat, double lng, int radius) {
