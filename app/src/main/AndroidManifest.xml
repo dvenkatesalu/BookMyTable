@@ -19,10 +19,7 @@
             android:name=".BookingActivity"
             android:label="@string/title_activity_booking"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AboutRestaurant" />
         <activity android:name=".NewLoginActivity" />
-        <activity android:name=".CommonRegisterActivity" />
-        <activity android:name=".RegisterRestaurantActivity" />
         <activity android:name=".MainActivity"/>
         <activity android:name=".DisplayRestaurantsForCustomers"/>
         <activity android:name=".LoginActivity" >
