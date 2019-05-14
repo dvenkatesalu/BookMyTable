@@ -89,7 +89,7 @@ public class DisplayRestaurants extends AppCompatActivity {
 
                     setRestaurantToOwner(text,location,Math.round(ratingOfRestaurant));
                     Toast.makeText(getApplicationContext(), "Restaurant added to Database!", Toast.LENGTH_SHORT).show();
-                    //TODO: LAND THE USER ON APPROVE BOOKINGS
+                    startActivity(new Intent(DisplayRestaurants.this,MainActivity.class));
 
                 }
             });

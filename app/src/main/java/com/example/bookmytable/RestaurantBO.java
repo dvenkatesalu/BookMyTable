@@ -9,6 +9,23 @@ public class RestaurantBO implements Serializable {
 
     String ownerId;
     public String reference;
+    String resId;
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getResId() {
+        return resId;
+    }
+
+    public void setResId(String resId) {
+        this.resId = resId;
+    }
 
     public Integer getRatingbar() {
         return ratingbar;
