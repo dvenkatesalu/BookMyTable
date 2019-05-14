@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MakeBookingActivity"
-    android:background="@drawable/restaurantbackground">
+    android:background="@drawable/restaurantwallpaper">
 
     <TextView
         android:id="@+id/textView8"
@@ -27,6 +27,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="72dp"
         android:text="No of People:"
+        android:textColor="#000000"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +54,7 @@
         android:layout_marginLeft="44dp"
         android:layout_marginTop="64dp"
         android:text="From"
+        android:textColor="#000000"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +81,7 @@
         android:layout_marginLeft="44dp"
         android:layout_marginTop="64dp"
         android:text="To"
+        android:textColor="#000000"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,6 +117,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
         android:text="Book"
+        android:textColor="#000000"
+        android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

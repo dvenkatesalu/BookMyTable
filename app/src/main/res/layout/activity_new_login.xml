@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:id="@+id/login_layout"
-    android:background="@drawable/restaurantbackground">
+    android:background="@drawable/restaurantwallpaper">
 
     <Button
         android:id="@+id/isCustomer"
@@ -15,6 +15,8 @@
         android:layout_marginTop="84dp"
         android:layout_marginBottom="8dp"
         android:text="Customer"
+        android:textColor="#000000"
+        android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.468"
@@ -28,6 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
         android:text="Restaurant"
+        android:textColor="#000000"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
