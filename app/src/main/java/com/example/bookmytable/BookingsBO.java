@@ -4,25 +4,43 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class BookingsBO implements Parcelable {
-    String restaurantName;
+    String restaurantId;
     Integer noOfPeople;
     Integer status;
     String bookingId;
     String date;
-    String time;
+    String fromtime;
+    String toTime;
     String customerId;
+
+    public String getFromtime() {
+        return fromtime;
+    }
+
+    public void setFromtime(String fromtime) {
+        fromtime = fromtime;
+    }
+
+    public String getToTime() {
+        return toTime;
+    }
+
+    public void setToTime(String toTime) {
+        toTime = toTime;
+    }
 
     public BookingsBO(){
 
     }
 
     public BookingsBO(Parcel in) {
-        restaurantName = in.readString();
+        restaurantId = in.readString();
         noOfPeople = in.readInt();
         status = in.readInt();
         bookingId = in.readString();
         date = in.readString();
-        time = in.readString();
+        fromtime = in.readString();
+        toTime = in.readString();
         customerId = in.readString();
     }
 
@@ -33,12 +51,13 @@ public class BookingsBO implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(restaurantName);
+        dest.writeString(restaurantId);
         dest.writeInt(noOfPeople);
         dest.writeInt(status);
         dest.writeString(bookingId);
         dest.writeString(date);
-        dest.writeString(time);
+        dest.writeString(fromtime);
+        dest.writeString(toTime);
         dest.writeString(customerId);
     }
 
@@ -53,12 +72,12 @@ public class BookingsBO implements Parcelable {
         }
     };
 
-    public String getRestaurantName() {
-        return restaurantName;
+    public String getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public Integer getNoOfPeople() {
@@ -91,14 +110,6 @@ public class BookingsBO implements Parcelable {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public String getCustomerId() {
