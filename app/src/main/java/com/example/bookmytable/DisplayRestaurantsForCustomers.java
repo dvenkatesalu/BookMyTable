@@ -97,7 +97,17 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
             }
         });
         // get data from Firebase database
-        getRestaurantsToDisplay();
+
+        RestaurantBO restaurantBO = new RestaurantBO();
+        restaurantBO.address = "17 Lime Street, Sydney";
+        restaurantBO.name = "Steersons Steakhouse";
+        restaurantBO.ownerId ="Dharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
+        restaurantBO.rating = 3;
+        restaurantBO.reference = "";
+        restaurantBO.resId = "Steersons SteakhouseDharanip Priya_rUIcMxXvMabEPpicWggdrkUaRHl1";
+        restaurants.add(restaurantBO);
+
+        //getRestaurantsToDisplay();
 
 
         if (restaurants != null)
@@ -127,7 +137,7 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
                     startActivity(intent);
 
 
-                    Toast.makeText(getApplicationContext(), "Restaurant added to Database!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Reservation Successfully made!", Toast.LENGTH_LONG).show();
                     //TODO: LAND THE RESTAURANT USER ON APPROVE BOOKINGS
 
                 }

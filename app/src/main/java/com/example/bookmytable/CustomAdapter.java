@@ -67,8 +67,8 @@ public class CustomAdapter extends ArrayAdapter<RestaurantBO> implements View.On
         TextView release = (TextView) listItem.findViewById(R.id.tv1);
         release.setText(currentRestaurant.getAddress());
 
-        /*RatingBar ratingBar = (RatingBar)listItem.findViewById(R.id.listitemrating);
-        ratingBar.setRating(currentRestaurant.getRating());*/
+        RatingBar ratingBar = (RatingBar)listItem.findViewById(R.id.listitemrating);
+        ratingBar.setRating(currentRestaurant.getRating());
 
         return listItem;
     }
