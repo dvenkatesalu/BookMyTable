@@ -40,6 +40,13 @@ import java.util.ArrayList;
 public class DisplayRestaurantsForCustomers extends AppCompatActivity {
 
     private ListView mListView;
+    private static final String API_KEY = "AIzaSyDi1OagTMGaVbLZb5UW8rHpKTWkmgaMZK4";
+
+    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+
+    private static final String TYPE_SEARCH = "/nearbysearch";
+    private static final String OUT_JSON = "/json?";
+    private static final String LOG_TAG = "ListRest";
 
     ArrayList<RestaurantBO> restaurants;
 
@@ -92,21 +99,16 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
 
             }
         });
-
+        // get data from Firebase database
         getRestaurantsToDisplay();
 
 
         if (restaurants != null)
         {
             mListView = (ListView) findViewById(R.id.listView);
-
-//            restAdapter = new RestaurantsAdapter(this, restname, restLocation, restRating);
-//            mListView.setAdapter(restAdapter);
-            //restAdapter= new RestaurantsAdapter(restaurantBO,getApplicationContext());
-             // CustomAdapter adapter = new CustomAdapter(this, R.layout.text_view, list);
-//            mListView.setAdapter(adapter);
-            ArrayAdapter adapter = new ArrayAdapter(this, R.layout.text_view,R.id.tv, restaurants);
+            CustomAdapter adapter = new CustomAdapter(this,restaurants);
             mListView.setAdapter(adapter);
+
 
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view,
@@ -127,8 +129,6 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
 
                 }
             });
-//            ArrayAdapter adapter1 = new ArrayAdapter(this, R.layout.text_view,R.id.tv1, list);
-//            mListView.setAdapter(adapter1);
         }
     }
 
@@ -152,5 +152,6 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
             }
         });
     }
+
 
 }
