@@ -1,16 +1,57 @@
 package com.example.bookmytable;
 
-import java.sql.Time;
-import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class BookingsBO {
+public class BookingsBO implements Parcelable {
     String restaurantName;
     Integer noOfPeople;
-    Boolean status;
+    Integer status;
     String bookingId;
-    Date date;
-    Time time;
+    String date;
+    String time;
     String customerId;
+
+    public BookingsBO(){
+
+    }
+
+    public BookingsBO(Parcel in) {
+        restaurantName = in.readString();
+        noOfPeople = in.readInt();
+        status = in.readInt();
+        bookingId = in.readString();
+        date = in.readString();
+        time = in.readString();
+        customerId = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(restaurantName);
+        dest.writeInt(noOfPeople);
+        dest.writeInt(status);
+        dest.writeString(bookingId);
+        dest.writeString(date);
+        dest.writeString(time);
+        dest.writeString(customerId);
+    }
+
+    // This is to de-serialize the object
+    public static final Parcelable.Creator<BookingsBO> CREATOR = new Parcelable.Creator<BookingsBO>() {
+        public BookingsBO createFromParcel(Parcel in) {
+            return new BookingsBO(in);
+        }
+
+        public BookingsBO[] newArray(int size) {
+            return new BookingsBO[size];
+        }
+    };
 
     public String getRestaurantName() {
         return restaurantName;
@@ -28,11 +69,11 @@ public class BookingsBO {
         this.noOfPeople = noOfPeople;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -44,19 +85,19 @@ public class BookingsBO {
         this.bookingId = bookingId;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
