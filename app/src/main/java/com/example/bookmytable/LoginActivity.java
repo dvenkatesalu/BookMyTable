@@ -177,17 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     else {
-                        Intent intent = new Intent(LoginActivity.this,DisplayRestaurants.class);
-                        // Double longitude = location.getLongitude();
-                        Double longitude = 151.1957362;
-                        System.out.println("I am longitude"+longitude);
-                        //  Double latitude = location.getLatitude();
-                        Double latitude = -33.8670522;
-                        String longit = Double.toString(longitude);
-                        String lat = Double.toString(latitude);
-                        intent.putExtra("long", longit);
-                        intent.putExtra("lat", lat);
-                        startActivity(intent);
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     }
 
                 }
