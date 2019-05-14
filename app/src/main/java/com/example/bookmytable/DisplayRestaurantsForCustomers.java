@@ -106,17 +106,23 @@ public class DisplayRestaurantsForCustomers extends AppCompatActivity {
                                         int position, long id) {
                     LinearLayout ll = (LinearLayout) view;
                     TextView tv = (TextView) ll.findViewById(R.id.tv);
+
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
                     final String text = tv.getText().toString();
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+                    String key = user.getDisplayName() + "_" + user.getUid();
+
+                    String resId = text + key;
 
                     // CALL MAKE RESERVATION
-                    //Intent intent = new Intent(this,MakingBookingActivity.class);
-                    //TODO SET THE CHOSEN BO HERE
-                    //intent.putExtra("pickesRestaurant", longit);
-                    //startActivity(intent);
+                    Intent intent = new Intent(DisplayRestaurantsForCustomers.this,BookingsBO.class);
+                    intent.putExtra("resId", text);
+                    startActivity(intent);
 
 
                     Toast.makeText(getApplicationContext(), "Restaurant added to Database!", Toast.LENGTH_SHORT).show();
-                    //TODO: LAND THE USER ON APPROVE BOOKINGS
+                    //TODO: LAND THE RESTAURANT USER ON APPROVE BOOKINGS
 
                 }
             });
