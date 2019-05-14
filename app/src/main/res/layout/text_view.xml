@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/row_item">
+    android:id="@+id/row_item"
+    >
     <TextView
         android:id="@+id/tv"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:padding="10dp"
         android:textSize="20sp"
         android:layout_width="fill_parent"
@@ -23,10 +24,10 @@
         android:transformPivotX="0dp"
         android:transformPivotY="0dp"
         android:isIndicator="true"
+        android:progressTint="@color/orangeRed"
         android:max="5" />
     <TextView
         android:id="@+id/tv1"
-        android:textColor="#FFFFFF"
         android:padding="10dp"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
         android:layout_width="fill_parent"

@@ -165,9 +165,6 @@ public class DisplayRestaurants extends AppCompatActivity {
                 place.name = predsJsonArray.getJSONObject(i).getString("name");
                 place.ratingbar = predsJsonArray.getJSONObject(i).getInt("rating");
                 place.address = predsJsonArray.getJSONObject(i).getString("vicinity");
-
-
-
                 resultList.add(place);
             }
         } catch (JSONException e) {

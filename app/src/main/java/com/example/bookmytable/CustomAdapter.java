@@ -30,13 +30,6 @@ public class CustomAdapter extends ArrayAdapter<RestaurantBO> implements View.On
 
     }
 
-    // View lookup cache
-    private static class ViewHolder {
-        TextView txtName;
-        TextView txtType;
-        TextView txtVersion;
-        ImageView info;
-    }
 
 
     public CustomAdapter(ArrayList<RestaurantBO> data, Context context) {
